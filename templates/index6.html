@@ -40,7 +40,7 @@
               </li>
             </ul>
             <form class="d-flex" method="post" action="" autocomplete="off">
-              <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="tag" id='tag'>
+              <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search name" name="tag" id='tag'>
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
@@ -55,7 +55,7 @@
       <div class="app"  >
         {% for r in result %}
         <div class="card" >
-          <img src= {{ r.Photo }} >
+          <img src= {{ r.Photo }} class="card--image" >
           <p class="card--id" >{{ r.id }} </p>
           <p class="card--name" >{{ r.name }}</p>
           <p>{{ r.types }} </p>
