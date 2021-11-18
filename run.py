@@ -4,7 +4,7 @@ from flask.json import tag
 import requests
 from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from datatables import ColumnDT, DataTables
+
 
 app = Flask(__name__)
 
@@ -57,27 +57,7 @@ def search():
 
 
 
-@app.route('/load_table_sql', methods=['GET', 'POST'])
-def load_table_sql() :
-    columns = [
-        ColumnDT(User.id),
-        ColumnDT(User.name),
-        ColumnDT(User.Description),
-        ColumnDT(User.weight),
-        ColumnDT(User.height),
-        ColumnDT(User.hp),
-        ColumnDT(User.attack),
-        ColumnDT(User.speed),
-        ColumnDT(User.defense),
-        ColumnDT(User.special_attack),
-        ColumnDT(User.special_defense),
-        ColumnDT(User.types),
-        ColumnDT(User.Photo)
-    ]
-    query = db.session.query().select_from(User)
-    rowTable = DataTables(request.args.to_dict(), query, columns)
-    # returns what is needed by DataTable
-    return rowTable.output_result()
+
     
 
 
