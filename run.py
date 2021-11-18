@@ -1,4 +1,6 @@
 
+import re
+from flask.json import tag
 import requests
 from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
@@ -7,6 +9,7 @@ from datatables import ColumnDT, DataTables
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://webadmin:ZQQcoa88817@node17333-wachirawit.app.ruk-com.cloud:11107/mydb'
+app.config['SECRET_KEY'] = 'cairocoders-ednalan'
 db = SQLAlchemy(app)
 
    
@@ -32,8 +35,27 @@ class User(db.Model) :
 @app.route('/', methods=['GET', 'POST'])
 def index() :
     result = User.query.all()
+    if request.method == 'POST' and 'tag' in request.form:
+        tag = request.form['tag']
+        search = "%{}%".format(tag.lower())
+        result = User.query.filter(User.name.like(search))
+        
+        return render_template('index6.html',result=result,tag=tag)
     return render_template('index6.html',result=result)
-    #return render_template('index.html')
+
+
+@app.route('/About')
+def About() :
+    return render_template('About.html')
+
+
+
+@app.route('/search')
+def search():
+    result = User.query.whoosh_search(request.args.get('query')).all()
+    return render_template('index6.html',result=result)
+
+
 
 @app.route('/load_table_sql', methods=['GET', 'POST'])
 def load_table_sql() :
