@@ -101,4 +101,4 @@ def gg(num):
 #create_db_user()
 
 if __name__ == "__main__" :
-    app.run(host='0.0.0.0', debug=True,port=80)
+    app.run(host='0.0.0.0', debug=True,port=88)
