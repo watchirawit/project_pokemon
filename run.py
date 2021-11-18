@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://webadmin:ZQQcoa88817@node17333-wachirawit.app.ruk-com.cloud:11107/mydb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://webadmin:ZQQcoa88817@node17333-wachirawit.app.ruk-com.cloud:5432/mydb'
 app.config['SECRET_KEY'] = 'cairocoders-ednalan'
 db = SQLAlchemy(app)
 
@@ -101,4 +101,4 @@ def gg(num):
 #create_db_user()
 
 if __name__ == "__main__" :
-    app.run(host='0.0.0.0', debug=True,port=88)
+    app.run(host='0.0.0.0', debug=True,port=80)
